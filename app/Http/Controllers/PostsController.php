@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,10 +14,18 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+   // public function index()
+   // {
+       // return view("blog.index");
+    //}
+
     public function index()
     {
-        return view("blog.index");
-    }
+        // Display all posts
+        $posts= Post::all();
+        return view('blog.index', compact('posts'));
+        }
+
 
     /**
      * Show the form for creating a new resource.
@@ -37,7 +46,9 @@ class PostsController extends Controller
     public function store(Request $request)
     {
 
-       $request->validate([
+      // Validate  Inputs
+
+        $request->validate([
 
        'title' => "required",
        'imagep' => 'required|image|mimes:jpg,png,jpeg|max:2048|',
@@ -45,7 +56,7 @@ class PostsController extends Controller
 
 
    ]);
-
+ // Request for Inputs
         $title = $request->input('title');
         $slug = Str::slug($title,'-');
         $body = $request->input('body');
@@ -53,23 +64,18 @@ class PostsController extends Controller
         //Image Upload
         $imagePath = 'storage/' . $request->file('imagep')->store('postImages','public');
 
+   //Post and Save Inputs
+
+   $post = new Post();
+   $post->title = $title;
+   $post->slug = $slug;
+   $post->body = $body;
+   $post->imagePath = $imagePath;
+   $post->save();
+
+   return redirect()->back()->with('status', 'Blog Post Successfully Saved');
 
 
-
-
-
-
-
-
-
-        $newsitem->title = $title;
-        $newsitem->newsPhotoCaption = $newsPhotoCaption;
-        $newsitem->slug = $slug;
-        $newsitem->body = $body;
-        $newsitem->newsPhotoPath = $newsPhotoPath;
-        $newsitem->save();
-
-        return redirect()->back()->with('status', 'News Post Edit Successfully Saved');
 
 
 

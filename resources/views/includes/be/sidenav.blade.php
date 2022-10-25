@@ -16,7 +16,7 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="{{ route('blog.create') }}">Create a Post</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Edit a Post</a>
+                                    <a class="nav-link" href="{{ route('blog.index') }}">View All Posts</a>
                                 </nav>
                             </div>
 

@@ -441,3 +441,8 @@ ul.tags li a:hover {
 	border-radius:50%;
 	font-size:12px;
 }
+
+.post-image-specs{
+	height: 250px;
+	width: 300px;
+}

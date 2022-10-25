@@ -18,7 +18,8 @@
                                 <div class="card mb-4">
                                     <div class="card-header">
 
-                                       <h4>Create Post Page </h4>                                </div>
+                                       <h4>Create Post Page </h4>
+                                       @include('includes.flash-message')                               </div>
                                     <div class="card-body">
                                         <form  method = "POST" action = "{{ route('blog.store') }}"   enctype="multipart/form-data" >
                                             @csrf
